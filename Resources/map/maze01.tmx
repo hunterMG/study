@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="32" tileheight="32" nextobjectid="7">
+ <tileset firstgid="1" name="ground" tilewidth="32" tileheight="32" tilecount="100" columns="10">
+  <image source="ground.png" width="321" height="321"/>
+  <tile id="0">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="end" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="101" name="collidable_tiles" tilewidth="32" tileheight="32" tilecount="1" columns="1">
+  <image source="collidable_tiles.jpg" width="32" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="Collidable" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="background" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztlEsOwCAIBbG2q5re/7iyNMQADYL9uJiF0Th5gG4AkCaRkRO5GhJZe1KWv+tv4fY0cNl6fu783dq83S/d9zS/5LP6rXmt/f+j3/K+v5A/2s/VNzq/9zzM+P8okX6Kpv8j50HjH8nyy/5d0XMvDqQC6x8g/Q==
+  </data>
+ </layer>
+ <layer name="collidable" width="32" height="24" opacity="0">
+  <data encoding="base64" compression="zlib">
+   eJzt1UsKACAIBFAv2/2v0DZCmkSnMhxoEUUv+jYRaZfLmLnOTPm6v9qbyL3V+qD+lmT30Xiv+Tuex0eJ9hnrnc333m+vb8kP/mp9T/ho/OjzcPr9Q3Nm+lq79Y9l+5Epf8+/WTrG1VQK
+  </data>
+ </layer>
+ <layer name="end" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AU0AJojXD7R8EoGAWjYBSMgsEC+NHwSLcfAC4FAQk=
+  </data>
+ </layer>
+ <objectgroup name="objects" offsetx="0" offsety="-1.33333">
+  <object id="5" name="ninja" gid="101" x="58" y="616.667" width="32" height="32"/>
+ </objectgroup>
+</map>
