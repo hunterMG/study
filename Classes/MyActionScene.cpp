@@ -1,5 +1,6 @@
 ﻿#include "MyActionScene.h"
 #include "HelloWorldScene.h"
+#include "Hero.h"
 USING_NS_CC;
 
 Scene* MyAction::createScene()
@@ -61,13 +62,18 @@ bool MyAction::init()
 	float x = spawnPoint["x"].asFloat();
 	float y = spawnPoint["y"].asFloat();
 
-	_player = Sprite::create("ninja.png");
+	/*_player = Sprite::create("ninja.png");
 	_player->setPosition(Vec2(x, y));
 	gameView->addChild(_player, 2, 200);
+	this->addChild(gameView, 0);*/
+	
+	hero = Hero::create();
+	hero->InitHeroSprite("run1.png");
+	hero->setPosition(ccp(x, y));
+	gameView->addChild(hero, 1);
+
 	this->addChild(gameView, 0);
 	this->scheduleUpdate();
-	
-	//setViewpointCenter(_player->getPosition());
 
 	_end = _tileMap->getLayer("end");
 	_collidable = _tileMap->getLayer("collidable");
@@ -77,7 +83,7 @@ bool MyAction::init()
 	rocker = HRocker::createHRocker("rocker.png", "rockerbg.png", Vec2(60, 60));
 	this->addChild(rocker,2);
 	rocker->startRoker(true);
-
+	
 	setTouchEnabled(true);
 	//设置为单点触摸
 	setTouchMode(Touch::DispatchMode::ONE_BY_ONE);
@@ -86,28 +92,28 @@ bool MyAction::init()
 }
 void MyAction::update(float delta)
 {
-	Point pos = _player->getPosition();
+	Point pos = hero->getPosition();
 	int dis = 3;
 	switch (rocker->rockerDirection)
 	{
 	case 1:
 		pos.x += dis;
-	//	_player->setPosition(Vec2(_player->getPositionX() + dis, _player->getPositionY()));
+		hero->SetAnnimation("run.plist", "run.png", "run", 2, false);
 		break;
 	case 2:
 		pos.y += dis;
-		//_player->setPosition(Vec2(_player->getPositionX(), _player->getPositionY() + dis));
+		hero->SetAnnimation("run.plist", "run.png", "run", 2, false);
 		break;
 	case 3:
 		pos.x -= dis;
-		//_player->setPosition(Vec2(_player->getPositionX() - dis, _player->getPositionY()));
+		hero->SetAnnimation("run.plist", "run.png", "run", 2, false);
 		break;
 	case 4:
 		pos.y -= dis;
-		//_player->setPosition(Vec2(_player->getPositionX(), _player->getPositionY() - dis));
+		hero->SetAnnimation("run.plist", "run.png", "run", 2, false);
 		break;
 	default:
-		//_player->StopAnimation();
+		hero->StopAnimation();
 		break;
 	}
 	this->setPlayerPosition(pos);
@@ -271,9 +277,10 @@ void MyAction::setPlayerPosition(Vec2 position)
 	}
 
 	//移动精灵
-	_player->setPosition(position);
+	//_player->setPosition(position);
+	hero->setPosition(position);
 	//滚动地图
-	this->setViewpointCenter(_player->getPosition());
+	this->setViewpointCenter(hero->getPosition());
 }
 
 Vec2 MyAction::tileCoordFromPosition(Vec2 pos)
@@ -324,55 +331,3 @@ void MyAction::menuCloseCallback(Ref* pSender)
 
 }
 
-/*
-bool MyAction::onTouchBegan(Touch* touch, Event* event)
-{
-log("onTouchBegan");
-return true;
-}
-
-void MyAction::onTouchMoved(Touch *touch, Event *event)
-{
-log("onTouchMoved");
-}
-
-void MyAction::onTouchEnded(Touch *touch, Event *event)
-{
-log("onTouchEnded");
-//获得在OpenGL坐标
-Vec2 touchLocation = touch->getLocation();
-//转换为当前层的模型坐标系
-touchLocation = this->convertToNodeSpace(touchLocation);
-
-Vec2 playerPos = _player->getPosition();
-Vec2 diff = touchLocation - playerPos;
-
-//// 一步一步走
-//if (abs(diff.x) > abs(diff.y)) {
-//	if (diff.x > 0) {
-//		playerPos.x += 1;
-//		//playerPos.x += _tileMap->getTileSize().width;
-//		_player->runAction(FlipX::create(false));
-//	}
-//	else {
-//		playerPos.x -= 1;
-//		playerPos.x -= _tileMap->getTileSize().width;
-//		_player->runAction(FlipX::create(true));
-//	}
-//}
-//else {
-//	if (diff.y > 0) {
-//		//playerPos.y += _tileMap->getTileSize().height;
-//		playerPos.y += 1;
-//	}
-//	else {
-//		//playerPos.y -= _tileMap->getTileSize().height;
-//		playerPos.y -= 1;
-//	}
-//}
-
-this->setPlayerPosition(playerPos);
-
-}
-
-*/
